@@ -14,11 +14,12 @@
 package hugolib
 
 import (
-	"github.com/spf13/hugo/parser"
-	"github.com/spf13/hugo/source"
 	"path/filepath"
 	"reflect"
 	"testing"
+
+	"github.com/spf13/hugo/parser"
+	"github.com/spf13/hugo/source"
 )
 
 func TestDataDirJSON(t *testing.T) {
@@ -86,7 +87,7 @@ func TestDataDirUnknownFormat(t *testing.T) {
 	sources := []source.ByteSource{
 		{filepath.FromSlash("test.roml"), []byte("boo")},
 	}
-	s := &Site{}
+	s := newSiteDefaultLang()
 	err := s.loadData([]source.Input{&source.InMemorySource{ByteSource: sources}})
 	if err != nil {
 		t.Fatalf("Should not return an error")
@@ -94,7 +95,7 @@ func TestDataDirUnknownFormat(t *testing.T) {
 }
 
 func doTestDataDir(t *testing.T, expected interface{}, sources []source.Input) {
-	s := &Site{}
+	s := newSiteDefaultLang()
 	err := s.loadData(sources)
 	if err != nil {
 		t.Fatalf("Error loading data: %s", err)
