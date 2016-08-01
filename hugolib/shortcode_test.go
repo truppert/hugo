@@ -540,7 +540,7 @@ e`,
 		content := helpers.ReaderToString(file)
 
 		if content != test.expected {
-			t.Errorf("%s content expected:\n%q\ngot:\n%q", test.outFile, test.expected, content)
+			t.Fatalf("%s content expected:\n%v\ngot:\n%v", test.outFile, test.expected, content)
 		}
 	}
 
